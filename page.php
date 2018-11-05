@@ -11,32 +11,30 @@ page.php
 <br>
 <br>
 
-<h3>Menu avec wp_nav_menu()</h3>
-<?php wp_nav_menu(); ?>
+<h2><?= get_the_title() ?></h2>
 
-<hr>
-<h3>wp_get_nav_menu_items()</h3>
-
-
-
-
-
+<?php if ( have_posts() ): while( have_posts() ):  the_post();
+    the_title();
+    the_content();
+endwhile; else: ?>
+    <p>Pas de contenu.</p>
+<?php endif; ?>
 
 
 
-<ul class="navbar-nav mr-auto">
+
 <?php 
-$items = wp_get_nav_menu_items('main-menu');
-foreach ($items as $item) 
-{
-    ?>
-    <li class="nav-item">
-        <a class="nav-link" href="<?= $item->url ?>"><?= $item->title ?></a>
-    </li>
-    <?php
+if ( have_posts() ) {
+    while( have_posts() ) {
+        the_post();
+        the_content();
+    }
+}
+else {
+    echo "<p>Pas de contenu.</p>";
 }
 ?>
-</ul>
+
 
 
 

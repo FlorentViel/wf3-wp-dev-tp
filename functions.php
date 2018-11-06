@@ -96,3 +96,29 @@ if (!function_exists('shortcode'))
         return do_shortcode('['.$tag.' '.implode(" ", $params).']');
     }
 }
+
+// Creation d'un shortcode qui affiche la langue du site
+//  [lang]
+function get_language()  {
+    return bloginfo('language');
+}
+add_shortcode('lang', 'get_language');
+
+// Shortcode addition
+// do_shortcode('[addition a=10 b=32]A + B vaux :[/addition]')
+function addition($attributes, $content, $tag)
+{
+    // echo "<h3>Attr</h3>";
+    // echo "<pre>".print_r($attributes)."</pre>";
+
+    // echo "<h3>Content</h3>";    
+    // echo "<pre>".print_r($content)."</pre>";
+    
+    // echo "<h3>Tag</h3>";
+    // echo "<pre>".print_r($tag)."</pre>";
+
+    return $content .($attributes['a'] + $attributes['b']);
+}
+add_shortcode('addition', 'addition');
+
+

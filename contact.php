@@ -11,7 +11,9 @@
     "title" => "Contact form 1",
     "truc" => true
 ]) 
-
 ?>
+
+
+
 
 <?php get_footer() ?>

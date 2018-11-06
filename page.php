@@ -11,30 +11,11 @@ page.php
 <br>
 <br>
 
-<h2><?= get_the_title() ?></h2>
+Langue du site : <?= do_shortcode('[lang]') ?>
 
-<?php if ( have_posts() ): while( have_posts() ):  the_post();
-    the_title();
-    the_content();
-endwhile; else: ?>
-    <p>Pas de contenu.</p>
-<?php endif; ?>
+<hr>
 
-
-
-
-<?php 
-if ( have_posts() ) {
-    while( have_posts() ) {
-        the_post();
-        the_content();
-    }
-}
-else {
-    echo "<p>Pas de contenu.</p>";
-}
-?>
-
+<?= do_shortcode('[addition a=10 b=32]A + B vaux :[/addition]') ?>
 
 
 

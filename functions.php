@@ -7,6 +7,12 @@ if (!defined("_THEME")) {
 }
 
 
+function dump($arg) {
+    echo "<pre>";
+    print_r($arg);
+    echo "</pre>";
+}
+
 // Activer la gestion des menus avec un menu fictif
 add_action('init', 'register_my_menu');
 function register_my_menu() {
@@ -122,3 +128,25 @@ function addition($attributes, $content, $tag)
 add_shortcode('addition', 'addition');
 
 
+// Custom Post - Post personnalisé
+function movie_custom_post_type() {
+
+    // Définition des Labels texte
+    $labels = [
+        'name' => _x('Film', 'Films'),
+        'add_new' => __('Créer une fiche de film'),
+        // 'menu_name' => __('Nos films et Séries'),
+    ];
+
+    // Définition des paramètres du post personnalisé
+    $args = [
+        'label' => __("Films et Séries"),
+        'labels' => $labels,
+        'public' => true
+    ];
+
+    // Ajout du post au registre de WordPress
+    register_post_type("movies", $args);
+
+}
+add_action('init', 'movie_custom_post_type');

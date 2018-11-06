@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://getbootstrap.com/docs/4.1/examples/carousel/carousel.css">
 
+<?php wp_head(); ?>
 </head>
 
 <body>
@@ -36,13 +37,13 @@
                 </ul> -->
 
                 <!-- Main Menu -->
-                <ul class="navbar-nav mr-auto">
-                <?php foreach (wp_get_nav_menu_items('main-menu') as $item): ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= $item->url ?>"><?= $item->title ?></a>
-                    </li>
-                <?php endforeach; ?>
-                </ul>
+<ul class="navbar-nav mr-auto">
+    <?php foreach (wp_get_nav_menu_items('main-menu') as $item): ?>
+    <li class="nav-item">
+        <a class="nav-link" href="<?= $item->url ?>"><?= $item->title ?></a>
+    </li>
+    <?php endforeach; ?>
+</ul>
 
                 <form class="form-inline mt-2 mt-md-0">
                     <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">

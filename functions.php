@@ -147,6 +147,7 @@ function movie_custom_post_type() {
         'supports' => ['title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields']
     ];
 
+
     // Ajout du post au registre de WordPress
     // "movies" est l'identifiant du type de post
     // $args est le tableau de paramètres qui definissent le post personnalisé

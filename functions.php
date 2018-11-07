@@ -144,9 +144,10 @@ function movie_custom_post_type() {
         'labels' => $labels,
         'public' => true,
         // 'supports' => ['title', 'editor']
-        'supports' => ['title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields']
+        // 'supports' => ['title', 'editor', 'custom-fields']
+        // 'supports' => ['title', 'editor', 'custom-fields']
+        'supports' => ['title', 'editor']
     ];
-
 
     // Ajout du post au registre de WordPress
     // "movies" est l'identifiant du type de post
@@ -155,3 +156,29 @@ function movie_custom_post_type() {
 
 }
 add_action('init', 'movie_custom_post_type');
+
+
+// Ajouter une métabox
+function register_my_metaboxes() 
+{
+    // Création d'une premiere metaboxe
+    add_meta_box(
+        "my-first-metabox",  // Identifiant de la metabox
+        __("Ma Super Metabox"), // Titre de la métabox
+        "my_first_metabox_callback", // Appel de la fonction de callback
+        "movies" // post_type du post personnalisé
+    );
+
+}
+add_action('add_meta_boxes', 'register_my_metaboxes');
+
+// Déclaration de la fonction de callback de "My First Metabox"
+function my_first_metabox_callback( $post ) { ?>
+    <label>
+        Prénom : <input type="text" name="firstname">
+    </label>
+    <br>
+    <label>
+        NOM : <input type="text" name="lastname">
+    </label>
+<?php }

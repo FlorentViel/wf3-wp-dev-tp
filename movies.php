@@ -17,9 +17,23 @@ $query = new WP_Query( $args );
             <div>
                 <h3><?php the_title() ?></h3>
                 <div><?php the_content(); ?></div>
-                <div>Acteurs : <?= get_post_meta(get_the_ID(), "actors", true) ?></div>
-                <div>Editeur : <?= get_post_meta(get_the_ID(), "editor", true) ?></div>
-                <div>Date de sortie : <?= get_post_meta(get_the_ID(), "release_date", true) ?></div>
+
+                <?php if (!empty(get_post_meta(get_the_ID(), "actors", true))) {
+                    echo "<div>Acteurs : ".get_post_meta(get_the_ID(), "actors", true)."</div>";
+                } ?>
+
+                <?php 
+                $editor = get_post_meta(get_the_ID(), "editor", true);
+                if (!empty($editor)) { ?>
+                    <div>Editeur : <?= $editor ?></div>
+                <?php } ?>
+
+                <?php 
+                $date = get_post_meta(get_the_ID(), "release_date", true);
+                if (!empty($date)): ?><div>Date de sortie : <?= $date ?></div>
+                <?php endif; ?>
+                
+                
             </div>
         <?php endwhile; ?>
     <?php else: ?>

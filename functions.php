@@ -175,17 +175,30 @@ add_action('add_meta_boxes', 'register_my_metaboxes');
 // Déclaration de la fonction de callback de "My First Metabox"
 function my_first_metabox_callback( $post ) { ?>
     <label>
-        Prénom : <input type="text" name="firstname">
+        Prénom : <input type="text" name="firstname" value="<?= get_post_meta($post->ID, "firstname", true) ?>">
     </label>
     <br>
     <label>
-        NOM : <input type="text" name="lastname">
+        NOM : <input type="text" name="lastname" value="<?= get_post_meta($post->ID, "lastname", true) ?>">
     </label>
 <?php }
 
 // Enregitre les champs personnalisés
 function save_my_metabox_fields( $post_id ) {
-    add_post_meta($post_id, "firstname", $_POST['firstname']);
-    add_post_meta($post_id, "lastname", $_POST['lastname']);
+    // Ajoute ou MAJ du champ firstname
+    if (empty(get_post_meta($post_id, "firstname", true))) {
+        add_post_meta($post_id, "firstname", $_POST['firstname']);
+    }
+    else {
+        update_post_meta($post_id, "firstname", $_POST['firstname']);
+    }
+
+    // Ajoute ou MAJ du champ lastname
+    if (empty(get_post_meta($post_id, "lastname", true))) {
+        add_post_meta($post_id, "lastname", $_POST['lastname']);
+    }
+    else {
+        update_post_meta($post_id, "lastname", $_POST['lastname']);
+    }
 }
 add_action('save_post', 'save_my_metabox_fields');

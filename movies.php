@@ -28,10 +28,20 @@ $query = new WP_Query( $args );
                     <div>Editeur : <?= $editor ?></div>
                 <?php } ?>
 
-                <?php 
-                $date = get_post_meta(get_the_ID(), "release_date", true);
-                if (!empty($date)): ?><div>Date de sortie : <?= $date ?></div>
-                <?php endif; ?>
+            <?php 
+            $date = get_post_meta(get_the_ID(), "release_date", true);
+            if (!empty($date)): ?><div>Date de sortie : <?= $date ?></div>
+            <?php endif; ?>
+
+            <?php 
+            $firstname = get_post_meta(get_the_ID(), "firstname", true);
+            if (!empty($firstname)): ?><div>Prénom : <?= $firstname ?></div>
+            <?php endif; ?>
+
+            <?php 
+            $lastname = get_post_meta(get_the_ID(), "lastname", true);
+            if (!empty($lastname)): ?><div>NOM : <?= $lastname ?></div>
+            <?php endif; ?>
                 
                 
             </div>

@@ -182,3 +182,10 @@ function my_first_metabox_callback( $post ) { ?>
         NOM : <input type="text" name="lastname">
     </label>
 <?php }
+
+// Enregitre les champs personnalisés
+function save_my_metabox_fields( $post_id ) {
+    add_post_meta($post_id, "firstname", $_POST['firstname']);
+    add_post_meta($post_id, "lastname", $_POST['lastname']);
+}
+add_action('save_post', 'save_my_metabox_fields');

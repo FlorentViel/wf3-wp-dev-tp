@@ -17,7 +17,9 @@ $query = new WP_Query( $args );
             <div>
                 <h3><?php the_title() ?></h3>
                 <div><?php the_content(); ?></div>
-                <div><?= get_the_category_list(",", null, get_the_ID()) ?></div>
+                <div>Acteurs : <?= get_post_meta(get_the_ID(), "actors", true) ?></div>
+                <div>Editeur : <?= get_post_meta(get_the_ID(), "editor", true) ?></div>
+                <div>Date de sortie : <?= get_post_meta(get_the_ID(), "release_date", true) ?></div>
             </div>
         <?php endwhile; ?>
     <?php else: ?>
